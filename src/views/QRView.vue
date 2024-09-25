@@ -5,10 +5,16 @@
         <p>Last result: <b>{{ result }}</b></p>
 
         <div class="camera-view" style="border: 2px solid black">
-            <qrcode-stream :constraints="{ facingMode }" :track="paintBoundingBox" @detect="onDetect" @error="onError">
+            <qrcode-stream :formats="['qr_code', 'code_128']"
+                :constraints="{ facingMode, width, height }" 
+                :track="paintBoundingBox" 
+            >
                 <button @click="switchCamera">
                     <img src="../assets/camera-switch.svg" alt="switch camera" />
                 </button>
+                <div class="qr-box">
+                    
+                </div>
             </qrcode-stream>
         </div>
         <!-- <div id="qr-code-full-region" style="width: 100%;" @result="onScanSuccess"></div> -->
@@ -24,6 +30,8 @@ const emit = defineEmits(['result'])
 const result = ref('')
 const error = ref('')
 const facingMode = ref('environment')
+const width = ref('50%')
+const height = ref('50%')
 const qrbox = ref({
     type: Number,
     default: 250
@@ -145,6 +153,17 @@ function onDetect(detectedCodes) {
 
 <style scoped>
 .qr-page .camera-view {}
+
+.qr-box {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid red;
+    text-align: center;
+    width: 50%;
+    height: 50%;
+}
 
 button {
     position: absolute;
