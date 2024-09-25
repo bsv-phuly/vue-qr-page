@@ -161,8 +161,8 @@ function onDetect(detectedCodes) {
     left: 50%;
     border: 1px solid red;
     text-align: center;
-    width: 50%;
-    height: 50%;
+    width: 200px;
+    height: 200px;
 }
 
 button {
