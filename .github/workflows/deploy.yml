@@ -3,7 +3,7 @@ name: Vue QR Page
 on:
   push:
     branches:
-      - develop
+      - master
 permissions: read-all
 jobs:
   build:
