@@ -1,12 +1,10 @@
 <template>
     <div class="qr-page">
-        <h1>Simple Demo2</h1>
-
         <p style="color: red">{{ error }}</p>
 
         <p>Last result: <b>{{ result }}</b></p>
 
-        <div style="border: 2px solid black">
+        <div class="camera-view" style="border: 2px solid black">
             <qrcode-stream :constraints="{ facingMode }" :track="paintBoundingBox" @detect="onDetect" @error="onError">
                 <button @click="switchCamera">
                     <img src="../assets/camera-switch.svg" alt="switch camera" />
@@ -91,6 +89,9 @@ function onDetect(detectedCodes) {
 </script>
 
 <style scoped>
+.qr-page .camera-view {
+    
+}
 button {
     position: absolute;
     left: 10px;
