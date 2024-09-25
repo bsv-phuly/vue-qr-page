@@ -13,7 +13,7 @@
                     <img src="../assets/camera-switch.svg" alt="switch camera" />
                 </button>
                 <div class="qr-box">
-                    <qrcode-stream @detect="onDetect"></qrcode-stream>
+                    
                 </div>
             </qrcode-stream>
         </div>
@@ -98,12 +98,13 @@ const switchCamera = () => {
 function paintBoundingBox(detectedCodes, ctx) {
     for (const detectedCode of detectedCodes) {
         const {
-            boundingBox: { x, y, width, height }
+            // boundingBox: { x, y, width, height }
+            boundingBox
         } = detectedCode
 
         ctx.lineWidth = 2
         ctx.strokeStyle = '#007bff'
-        ctx.strokeRect(x, y, width, height)
+        ctx.strokeRect(82, 70, 200, 200)
     }
 }
 
