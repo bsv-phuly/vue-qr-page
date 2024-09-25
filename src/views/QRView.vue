@@ -8,6 +8,8 @@
             <qrcode-stream :formats="['qr_code', 'code_128']"
                 :constraints="{ facingMode, aspectRatio }" 
                 :track="paintBoundingBox" 
+                @error="onError"
+                @detect="onDetect"
             >
                 <button @click="switchCamera">
                     <img src="../assets/camera-switch.svg" alt="switch camera" />
