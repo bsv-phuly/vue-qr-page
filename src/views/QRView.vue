@@ -1,13 +1,17 @@
 <template>
     <div class="qr-page">
-        <h1>Simple Demo</h1>
+        <h1>Simple Demo2</h1>
 
         <p style="color: red">{{ error }}</p>
 
         <p>Last result: <b>{{ result }}</b></p>
 
         <div style="border: 2px solid black">
-            <qrcode-stream :track="paintBoundingBox" @detect="onDetect" @error="onError"></qrcode-stream>
+            <qrcode-stream :constraints="{ facingMode }" :track="paintBoundingBox" @detect="onDetect" @error="onError">
+                <button @click="switchCamera">
+                    <img src="../assets/camera-switch.svg" alt="switch camera" />
+                </button>
+            </qrcode-stream>
         </div>
     </div>
 </template>
@@ -17,6 +21,18 @@ import { ref } from "vue"
 
 const result = ref('')
 const error = ref('')
+const facingMode = ref('environment')
+
+const switchCamera = () => {
+    switch (facingMode.value) {
+        case 'environment':
+            facingMode.value = 'user'
+            break
+        case 'user':
+            facingMode.value = 'environment'
+            break
+    }
+}
 
 function paintBoundingBox(detectedCodes, ctx) {
     for (const detectedCode of detectedCodes) {
@@ -31,6 +47,20 @@ function paintBoundingBox(detectedCodes, ctx) {
 }
 
 function onError(err) {
+    const triedFrontCamera = facingMode.value === 'user'
+    const triedRearCamera = facingMode.value === 'environment'
+
+    const cameraMissingError = err.name === 'OverconstrainedError'
+
+    if (triedRearCamera && cameraMissingError) {
+        this.noRearCamera = true
+    }
+
+    if (triedFrontCamera && cameraMissingError) {
+        this.noFrontCamera = true
+    }
+
+    console.error(err)
     error.value = `[${err.name}]: `
 
     if (err.name === 'NotAllowedError') {
@@ -61,5 +91,19 @@ function onDetect(detectedCodes) {
 </script>
 
 <style scoped>
-.qr-page {}
+button {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+button img {
+    width: 50px;
+    height: 50px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
 </style>
