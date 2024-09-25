@@ -11,15 +11,44 @@
                 </button>
             </qrcode-stream>
         </div>
+        <div id="qr-code-full-region" style="width: 100%;" @result="onScanSuccess"></div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue"
+import { onMounted, ref } from "vue"
+import { Html5QrcodeScanner } from "html5-qrcode"
+import { defineEmits } from 'vue'
 
+const emit = defineEmits(['result'])
 const result = ref('')
 const error = ref('')
 const facingMode = ref('environment')
+const qrbox = ref({
+    type: Number,
+    default: 250
+})
+const fps = ref({
+    type: Number,
+    default: 10
+})
+
+onMounted(() => {
+    initCamera()
+})
+
+const initCamera = () => {
+    const config = {
+        fps: fps.value,
+        qrbox: qrbox.value,
+    };
+    const html5QrcodeScanner = new Html5QrcodeScanner('qr-code-full-region', config);
+    html5QrcodeScanner.render(onScanSuccess);
+}
+
+const onScanSuccess = (decodedText, decodedResult) => {
+    emit('result', decodedText, decodedResult)
+}
 
 const switchCamera = () => {
     switch (facingMode.value) {
@@ -89,9 +118,8 @@ function onDetect(detectedCodes) {
 </script>
 
 <style scoped>
-.qr-page .camera-view {
-    
-}
+.qr-page .camera-view {}
+
 button {
     position: absolute;
     left: 10px;
