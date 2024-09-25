@@ -11,13 +11,13 @@
                 </button>
             </qrcode-stream>
         </div>
-        <div id="qr-code-full-region" style="width: 100%;" @result="onScanSuccess"></div>
+        <!-- <div id="qr-code-full-region" style="width: 100%;" @result="onScanSuccess"></div> -->
     </div>
 </template>
 
 <script lang="ts" setup>
 import { onMounted, ref } from "vue"
-import { Html5QrcodeScanner, Html5Qrcode } from "html5-qrcode"
+import { Html5QrcodeScanner, Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode"
 import { defineEmits } from 'vue'
 
 const emit = defineEmits(['result'])
@@ -34,7 +34,7 @@ const fps = ref({
 })
 
 onMounted(() => {
-    initCamera()
+    // initCamera()
 })
 
 const initCamera = () => {
@@ -45,13 +45,13 @@ const initCamera = () => {
          */
         if (devices && devices.length) {
             var cameraId = devices[0].id;
-            const html5QrCode = new Html5Qrcode(/* element id */ "qr-code-full-region");
+            const html5QrCode = new Html5Qrcode("qr-code-full-region", { formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE] });
             html5QrCode.start(
                 cameraId,
                 {
                     fps: 10,    // Optional, frame per seconds for qr code scanning
                     qrbox: { width: 250, height: 250 },  // Optional, if you want bounded box UI
-                    videoConstraints: { facingMode: "environment" }
+                    videoConstraints: { facingMode: "environment" },
                 },
                 (decodedText, decodedResult) => {
                     // do something when code is read
@@ -67,6 +67,10 @@ const initCamera = () => {
         // handle err
     });
 }
+
+const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+    /* handle success */
+};
 
 const onScanSuccess = (decodedText, decodedResult) => {
     emit('result', decodedText, decodedResult)
