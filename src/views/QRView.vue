@@ -19,7 +19,9 @@
                 </div>
             </qrcode-stream>
         </div>
-        <!-- <div id="qr-code-full-region" style="width: 100%;" @result="onScanSuccess"></div> -->
+        {{ resultQrText }}
+        {{ resultDecodeQrText }}
+        <div id="qr-code-full-region" style="width: 100%;"></div>
     </div>
 </template>
 
@@ -42,6 +44,8 @@ const fps = ref({
     type: Number,
     default: 10
 })
+const resultQrText = ref('')
+const resultDecodeQrText = ref()
 
 onMounted(() => {
     // initCamera()
@@ -65,6 +69,8 @@ const initCamera = () => {
                 },
                 (decodedText, decodedResult) => {
                     // do something when code is read
+                    resultQrText.value = decodedText
+                    resultDecodeQrText.value = decodedResult
                 },
                 (errorMessage) => {
                     // parse error, ignore it.
@@ -77,10 +83,6 @@ const initCamera = () => {
         // handle err
     });
 }
-
-const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-    /* handle success */
-};
 
 const onScanSuccess = (decodedText, decodedResult) => {
     emit('result', decodedText, decodedResult)
@@ -100,13 +102,12 @@ const switchCamera = () => {
 function paintBoundingBox(detectedCodes, ctx) {
     for (const detectedCode of detectedCodes) {
         const {
-            // boundingBox: { x, y, width, height }
-            boundingBox
+            boundingBox: { x, y, width, height }
         } = detectedCode
 
         ctx.lineWidth = 2
         ctx.strokeStyle = '#007bff'
-        ctx.strokeRect(82, 70, 200, 200)
+        ctx.strokeRect(x, y, width, height)
     }
 }
 
