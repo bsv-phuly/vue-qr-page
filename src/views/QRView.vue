@@ -6,7 +6,7 @@
 
         <div class="camera-view" style="border: 2px solid black">
             <qrcode-stream :formats="['qr_code', 'code_128']"
-                :constraints="{ facingMode, width, height }" 
+                :constraints="{ facingMode, aspectRatio }" 
                 :track="paintBoundingBox" 
             >
                 <button @click="switchCamera">
@@ -30,7 +30,7 @@ const emit = defineEmits(['result'])
 const result = ref('')
 const error = ref('')
 const facingMode = ref('environment')
-const width = ref('50%')
+const aspectRatio = ref(4/3)
 const height = ref('50%')
 const qrbox = ref({
     type: Number,
