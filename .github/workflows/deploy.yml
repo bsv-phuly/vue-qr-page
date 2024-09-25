@@ -1,0 +1,27 @@
+name: Vue QR Page
+
+on:
+  push:
+    branches:
+      - develop
+permissions: read-all
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Build
+      run: |
+        npm install
+        npm run generate
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.5.0
+      with:
+        token: ${{ secrets.TOKEN_GITHUB }}
+        ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        branch: gh-pages
+        folder: dist
