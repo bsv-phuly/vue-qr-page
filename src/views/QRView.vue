@@ -48,7 +48,7 @@ const resultQrText = ref('')
 const resultDecodeQrText = ref()
 
 onMounted(() => {
-    // initCamera()
+    initCamera()
 })
 
 const initCamera = () => {
