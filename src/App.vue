@@ -1,7 +1,13 @@
 <script setup>
+import { ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import Qr2 from './components/Qr2.vue'
 import QRView from './views/QRView.vue'
+
+const isQr = ref(false);
+const qrWidth = ref();
+const qrHeight = ref();
 </script>
 
 <template>
@@ -14,6 +20,7 @@ import QRView from './views/QRView.vue'
     </div>
   </header>
   <QRView/>
+  <!-- <Qr2: width="qrWidth" :height="qrHeight" @onDecode="onDecode" :isQrScan="i"></Qr2:> -->
 
   <RouterView />
 </template>
