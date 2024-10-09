@@ -20,7 +20,7 @@
                 </button>
             </qrcode-stream> -->
             <!-- <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2> -->
-            <div id="qr-code-full-region" style="width: 100%"></div>
+            <div id="qr-code-full-region" style="width: 100%; height: 100%;"></div>
         </div>
         <!-- {{ resultQrText }}
         {{ resultDecodeQrText }} -->
@@ -101,10 +101,12 @@ const initCamera = () => {
                         },
                         (errorMessage) => {
                             // parse error, ignore it.
+                            console.log(errorMessage, 'errorMessage')
                         }
                     )
                     .catch((err) => {
                         // Start failed, handle it.
+                        console.log(err, 'err')
                     });
             }
         })
