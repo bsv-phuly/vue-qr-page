@@ -19,8 +19,8 @@
                     <img src="../assets/camera-switch.svg" alt="switch camera" />
                 </button>
             </qrcode-stream> -->
-            <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2>
-            <!-- <div id="qr-code-full-region" style="width: 100%"></div> -->
+            <!-- <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2> -->
+            <div id="qr-code-full-region" style="width: 100%"></div>
         </div>
         <!-- {{ resultQrText }}
         {{ resultDecodeQrText }} -->
@@ -141,7 +141,14 @@ const initCamera2 = () => {
         // readerElement.appendChild(overlay);
         const readerElement = document.getElementById('qr-shaded-region');
         const overlay = document.createElement('div');
-        overlay.className = 'scanning-line';
+        overlay.className = 'qr-overlay';
+        overlay.innerHTML = `
+                <div class="scanning-line"></div>
+                <div class="corner corner-top-left"></div>
+                <div class="corner corner-top-right"></div>
+                <div class="corner corner-bottom-left"></div>
+                <div class="corner corner-bottom-right"></div>
+            `;
         readerElement.appendChild(overlay);
     }, 5000);
 }
