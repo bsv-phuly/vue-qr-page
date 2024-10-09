@@ -1,11 +1,11 @@
 <template>
     <div class="qr-page">
-        <!-- <p style="color: red">{{ error }}</p> -->
-        <p style="color: red">{{ errorScan }}</p>
+        <p style="color: red">{{ error }}</p>
+        <!-- <p style="color: red">{{ errorScan }}</p> -->
 
         <p>
-            <!-- Last result: <b>{{ result }}</b> -->
-            Last result: <b>{{ resultScanQrText }}</b>
+            Last result: <b>{{ result }}</b>
+            <!-- Last result: <b>{{ resultScanQrText }}</b> -->
         </p>
 
         <div class="camera-view" style="border: 2px solid black">
@@ -19,11 +19,11 @@
                     <img src="../assets/camera-switch.svg" alt="switch camera" />
                 </button>
             </qrcode-stream> -->
-            <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2>
+            <!-- <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2> -->
+            <div id="qr-code-full-region" style="width: 100%"></div>
         </div>
         <!-- {{ resultQrText }}
         {{ resultDecodeQrText }} -->
-        <div id="qr-code-full-region" style="width: 100%"></div>
     </div>
 </template>
 
