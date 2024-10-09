@@ -176,6 +176,10 @@ const initCamera3 = () => {
                     overlay.className = 'qr-overlay';
                     overlay.innerHTML = `
                             <div class="scanning-line"></div>
+                            <div class="corner corner-top-left"></div>
+                            <div class="corner corner-top-right"></div>
+                            <div class="corner corner-bottom-left"></div>
+                            <div class="corner corner-bottom-right"></div>
                         `;
                     readerElement.appendChild(overlay);
                 }, 1000);
@@ -320,9 +324,7 @@ const onDecode = async (result) => {
     left: 0;
     right: 0;
     top: 2px;
-    /* Start right below the line */
-    /* height: 100px; */
-    /* Height of the gradient */
+    height: 50px;
     background: linear-gradient(to bottom, rgba(0, 102, 255, 0.2), transparent);
     pointer-events: none;
     z-index: 0;
@@ -331,38 +333,41 @@ const onDecode = async (result) => {
 /* Corner indicators */
 .corner {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    border-color: #0066ff;
+    width: 45px;
+    height: 45px;
     z-index: 1;
 }
 
 .corner-top-left {
-    top: 0;
-    left: 0;
-    border-top: 4px solid;
-    border-left: 4px solid;
+    top: -5px;
+    left: -5px;
+    border-top: 5px solid;
+    border-left: 5px solid;
+    border-color: #0066ff;
 }
 
 .corner-top-right {
-    top: 0;
-    right: 0;
-    border-top: 4px solid;
-    border-right: 4px solid;
+    top: -5px;
+    right: -5px;
+    border-top: 5px solid;
+    border-right: 5px solid;
+    border-color: #0066ff;
 }
 
 .corner-bottom-left {
-    bottom: 0;
-    left: 0;
-    border-bottom: 4px solid;
-    border-left: 4px solid;
+    bottom: -5px;
+    left: -5px;
+    border-bottom: 5px solid;
+    border-left: 5px solid;
+    border-color: #0066ff;
 }
 
 .corner-bottom-right {
-    bottom: 0;
-    right: 0;
-    border-bottom: 4px solid;
-    border-right: 4px solid;
+    bottom: -5px;
+    right: -5px;
+    border-bottom: 5px solid;
+    border-right: 5px solid;
+    border-color: #0066ff;
 }
 
 /* @keyframes scan {
