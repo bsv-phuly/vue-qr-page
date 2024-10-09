@@ -281,13 +281,13 @@ const onDecode = async (result) => {
     position: relative;
 }
 
-#qr-shaded-region {
+#qr-code-full-region__scan_region {
     position: relative;
     overflow: hidden;
 }
 
 /* Horizontal scanning line */
-#qr-shaded-region::before {
+#qr-code-full-region__scan_region::before {
     content: '';
     position: absolute;
     left: 0;
