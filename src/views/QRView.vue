@@ -61,8 +61,8 @@ const resultScanQrText = ref("");
 const errorScan = ref("");
 
 onMounted(() => {
-    initCamera();
-    // initCamera2();
+    // initCamera();
+    initCamera2();
 });
 
 const initCamera = () => {
