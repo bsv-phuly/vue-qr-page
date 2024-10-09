@@ -146,7 +146,7 @@ onBeforeUnmount(() => {
     }
 });
 </script>
-<style scoped lang="scss">
+<style scoped lang="css">
 .canvas {
     border-radius: 16px;
 }
