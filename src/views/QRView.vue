@@ -119,15 +119,15 @@ const initCamera2 = () => {
     html5QrcodeScanner.render(onScanSuccess, onScanError);
 
     setTimeout(() => {
-        const scanRegion = document.getElementById('qr-code-full-region__scan_region');
-        if (scanRegion) {
-            scanRegion.insertAdjacentHTML('beforeend', `
-                    <div class="corner corner-top-left"></div>
-                    <div class="corner corner-top-right"></div>
-                    <div class="corner corner-bottom-left"></div>
-                    <div class="corner corner-bottom-right"></div>
-                `);
-        }
+        // const scanRegion = document.getElementById('qr-code-full-region__scan_region');
+        // if (scanRegion) {
+        //     scanRegion.insertAdjacentHTML('beforeend', `
+        //             <div class="corner corner-top-left"></div>
+        //             <div class="corner corner-top-right"></div>
+        //             <div class="corner corner-bottom-left"></div>
+        //             <div class="corner corner-bottom-right"></div>
+        //         `);
+        // }
         // const readerElement = document.getElementById('qr-code-full-region');
         // const overlay = document.createElement('div');
         // overlay.className = 'qr-overlay';
@@ -139,7 +139,11 @@ const initCamera2 = () => {
         //         <div class="corner corner-bottom-right"></div>
         //     `;
         // readerElement.appendChild(overlay);
-    }, 1000);
+        const readerElement = document.getElementById('qr-shaded-region');
+        const overlay = document.createElement('div');
+        overlay.className = 'scanning-line';
+        readerElement.appendChild(overlay);
+    }, 2000);
 }
 
 const initCamera3 = () => {
@@ -294,7 +298,7 @@ const onDecode = async (result) => {
     right: 0;
     height: 2px;
     background-color: #0066ff;
-    animation: scan 2s linear infinite;
+    animation: scan 4s infinite;
     z-index: 1;
 }
 
@@ -304,8 +308,8 @@ const onDecode = async (result) => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 250px;
-    height: 250px;
+    width: 100px;
+    height: 100px;
     pointer-events: none;
     z-index: 1;
 }
@@ -317,7 +321,24 @@ const onDecode = async (result) => {
     right: 0;
     height: 2px;
     background-color: #0066ff;
-    animation: scan 2s linear infinite;
+    animation: scan 3s infinite;
+    /* Start at bottom */
+    bottom: 0;
+    z-index: 1;
+}
+
+.scanning-line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 2px;
+    /* Start right below the line */
+    /* height: 100px; */
+    /* Height of the gradient */
+    background: linear-gradient(to bottom, rgba(0, 102, 255, 0.2), transparent);
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* Corner indicators */
@@ -357,7 +378,7 @@ const onDecode = async (result) => {
     border-right: 4px solid;
 }
 
-@keyframes scan {
+/* @keyframes scan {
     0% {
         top: 0;
     }
@@ -368,6 +389,18 @@ const onDecode = async (result) => {
 
     100% {
         top: 0;
+    }
+} */
+
+@keyframes scan {
+    0% {
+        /* Start from bottom */
+        transform: translateY(0);
+    }
+
+    100% {
+        /* Move to top */
+        transform: translateY(-98px);
     }
 }
 
