@@ -143,7 +143,7 @@ const initCamera2 = () => {
         const overlay = document.createElement('div');
         overlay.className = 'scanning-line';
         readerElement.appendChild(overlay);
-    }, 2000);
+    }, 5000);
 }
 
 const initCamera3 = () => {
