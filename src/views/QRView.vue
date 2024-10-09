@@ -144,10 +144,6 @@ const initCamera2 = () => {
         overlay.className = 'qr-overlay';
         overlay.innerHTML = `
                 <div class="scanning-line"></div>
-                <div class="corner corner-top-left"></div>
-                <div class="corner corner-top-right"></div>
-                <div class="corner corner-bottom-left"></div>
-                <div class="corner corner-bottom-right"></div>
             `;
         readerElement.appendChild(overlay);
     }, 5000);
@@ -315,10 +311,9 @@ const onDecode = async (result) => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
-    z-index: 1;
 }
 
 /* Horizontal scanning line */
@@ -402,12 +397,12 @@ const onDecode = async (result) => {
 @keyframes scan {
     0% {
         /* Start from bottom */
-        transform: translateY(0);
+        transform: translateY(0%);
     }
 
     100% {
         /* Move to top */
-        transform: translateY(-98px);
+        transform: translateY(100%);
     }
 }
 
