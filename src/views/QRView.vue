@@ -62,7 +62,7 @@ const errorScan = ref("");
 
 onMounted(() => {
     // initCamera();
-    initCamera2();
+    initCamera3();
 });
 
 const initCamera = () => {
@@ -77,15 +77,6 @@ const initCamera = () => {
                 const html5QrCode = new Html5Qrcode("qr-code-full-region", {
                     formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
                 });
-                const readerElement = document.getElementById('qr-shaded-region');
-                console.log(devices, 'devices')
-                console.log(readerElement)
-                const overlay = document.createElement('div');
-                overlay.className = 'qr-overlay';
-                overlay.innerHTML = `
-                        <div class="scanning-line"></div>
-                    `;
-                readerElement.appendChild(overlay);
                 html5QrCode
                     .start(
                         cameraId,
@@ -130,26 +121,13 @@ const initCamera2 = () => {
     html5QrcodeScanner.render(onScanSuccess, onScanError);
 
     setTimeout(() => {
-        // const scanRegion = document.getElementById('qr-code-full-region__scan_region');
-        // if (scanRegion) {
-        //     scanRegion.insertAdjacentHTML('beforeend', `
-        //             <div class="corner corner-top-left"></div>
-        //             <div class="corner corner-top-right"></div>
-        //             <div class="corner corner-bottom-left"></div>
-        //             <div class="corner corner-bottom-right"></div>
-        //         `);
-        // }
-        // const readerElement = document.getElementById('qr-code-full-region');
-        // const overlay = document.createElement('div');
-        // overlay.className = 'qr-overlay';
-        // overlay.innerHTML = `
-        //         <div class="scanning-line"></div>
-        //         <div class="corner corner-top-left"></div>
-        //         <div class="corner corner-top-right"></div>
-        //         <div class="corner corner-bottom-left"></div>
-        //         <div class="corner corner-bottom-right"></div>
-        //     `;
-        // readerElement.appendChild(overlay);
+        const readerElement = document.getElementById('qr-shaded-region');
+        const overlay = document.createElement('div');
+        overlay.className = 'qr-overlay';
+        overlay.innerHTML = `
+                <div class="scanning-line"></div>
+            `;
+        readerElement.appendChild(overlay);
     }, 5000);
 }
 
@@ -160,11 +138,22 @@ const initCamera3 = () => {
              * devices would be an array of objects of type:
              * { id: "id", label: "label" }
              */
+            console.log(devices, 'devices')
             if (devices && devices.length) {
                 var cameraId = devices[0].id;
+                console.log(cameraId)
                 const html5QrCode = new Html5Qrcode("qr-code-full-region", {
                     formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
                 });
+                console.log(html5QrCode, 'html5QrCode')
+                const readerElement = document.getElementById('qr-shaded-region');
+                console.log(readerElement)
+                const overlay = document.createElement('div');
+                overlay.className = 'qr-overlay';
+                overlay.innerHTML = `
+                        <div class="scanning-line"></div>
+                    `;
+                readerElement.appendChild(overlay);
                 html5QrCode
                     .start(
                         cameraId,
@@ -194,13 +183,6 @@ const initCamera3 = () => {
 
 function onScanError(errorMessage) {
     console.warn(`QR error = ${errorMessage}`);
-    const readerElement = document.getElementById('qr-shaded-region');
-    const overlay = document.createElement('div');
-    overlay.className = 'qr-overlay';
-    overlay.innerHTML = `
-                <div class="scanning-line"></div>
-            `;
-    readerElement.appendChild(overlay);
 }
 
 const onScanSuccess = (decodedText, decodedResult) => {
@@ -302,18 +284,6 @@ const onDecode = async (result) => {
 #qr-code-full-region__scan_region {
     position: relative;
     overflow: hidden;
-}
-
-/* Horizontal scanning line */
-#qr-code-full-region__scan_region::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: #0066ff;
-    animation: scan 4s infinite;
-    z-index: 1;
 }
 
 /* Custom overlay for QR box */
