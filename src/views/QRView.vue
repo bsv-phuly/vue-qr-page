@@ -119,26 +119,26 @@ const initCamera2 = () => {
     html5QrcodeScanner.render(onScanSuccess, onScanError);
 
     setTimeout(() => {
-        // const scanRegion = document.getElementById('reader__scan_region');
-        // if (scanRegion) {
-        //     scanRegion.insertAdjacentHTML('beforeend', `
-        //             <div class="corner corner-top-left"></div>
-        //             <div class="corner corner-top-right"></div>
-        //             <div class="corner corner-bottom-left"></div>
-        //             <div class="corner corner-bottom-right"></div>
-        //         `);
-        // }
-        const readerElement = document.getElementById('qr-code-full-region');
-        const overlay = document.createElement('div');
-        overlay.className = 'qr-overlay';
-        overlay.innerHTML = `
-                <div class="scanning-line"></div>
-                <div class="corner corner-top-left"></div>
-                <div class="corner corner-top-right"></div>
-                <div class="corner corner-bottom-left"></div>
-                <div class="corner corner-bottom-right"></div>
-            `;
-        readerElement.appendChild(overlay);
+        const scanRegion = document.getElementById('qr-code-full-region__scan_region');
+        if (scanRegion) {
+            scanRegion.insertAdjacentHTML('beforeend', `
+                    <div class="corner corner-top-left"></div>
+                    <div class="corner corner-top-right"></div>
+                    <div class="corner corner-bottom-left"></div>
+                    <div class="corner corner-bottom-right"></div>
+                `);
+        }
+        // const readerElement = document.getElementById('qr-code-full-region');
+        // const overlay = document.createElement('div');
+        // overlay.className = 'qr-overlay';
+        // overlay.innerHTML = `
+        //         <div class="scanning-line"></div>
+        //         <div class="corner corner-top-left"></div>
+        //         <div class="corner corner-top-right"></div>
+        //         <div class="corner corner-bottom-left"></div>
+        //         <div class="corner corner-bottom-right"></div>
+        //     `;
+        // readerElement.appendChild(overlay);
     }, 1000);
 }
 
@@ -267,7 +267,7 @@ const onDecode = async (result) => {
 };
 </script>
 
-<style scoped>
+<style>
 .qr-page .camera-view {
     overflow: hidden;
     height: 100vh;
@@ -281,13 +281,13 @@ const onDecode = async (result) => {
     position: relative;
 }
 
-#reader__scan_region {
+#qr-shaded-region {
     position: relative;
     overflow: hidden;
 }
 
 /* Horizontal scanning line */
-#reader__scan_region::before {
+#qr-shaded-region::before {
     content: '';
     position: absolute;
     left: 0;
