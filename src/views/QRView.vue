@@ -61,8 +61,8 @@ const resultScanQrText = ref("");
 const errorScan = ref("");
 
 onMounted(() => {
-    // initCamera();
-    initCamera2();
+    initCamera();
+    // initCamera2();
 });
 
 const initCamera = () => {
@@ -77,6 +77,15 @@ const initCamera = () => {
                 const html5QrCode = new Html5Qrcode("qr-code-full-region", {
                     formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
                 });
+                const readerElement = document.getElementById('qr-shaded-region');
+                console.log(devices, 'devices')
+                console.log(readerElement)
+                const overlay = document.createElement('div');
+                overlay.className = 'qr-overlay';
+                overlay.innerHTML = `
+                        <div class="scanning-line"></div>
+                    `;
+                readerElement.appendChild(overlay);
                 html5QrCode
                     .start(
                         cameraId,
@@ -308,12 +317,12 @@ const onDecode = async (result) => {
 /* Custom overlay for QR box */
 .qr-overlay {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    left: 0;
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
     pointer-events: none;
+    animation: scan 3s infinite;
 }
 
 /* Horizontal scanning line */
@@ -323,7 +332,6 @@ const onDecode = async (result) => {
     right: 0;
     height: 2px;
     background-color: #0066ff;
-    animation: scan 3s infinite;
     /* Start at bottom */
     bottom: 0;
     z-index: 1;
@@ -402,7 +410,7 @@ const onDecode = async (result) => {
 
     100% {
         /* Move to top */
-        transform: translateY(100%);
+        transform: translateY(-100%);
     }
 }
 
