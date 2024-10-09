@@ -303,7 +303,7 @@ const onDecode = async (result) => {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    animation: scan 3s infinite;
+    animation: scan 2s infinite;
 }
 
 /* Horizontal scanning line */
