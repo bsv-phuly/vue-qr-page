@@ -20,7 +20,7 @@
                 </button>
             </qrcode-stream> -->
             <!-- <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2> -->
-            <div id="qr-code-full-region" style="width: 100%; height: 100%;"></div>
+            <div id="qr-code-full-region" style="width: 100%;"></div>
         </div>
         <!-- {{ resultQrText }}
         {{ resultDecodeQrText }} -->
@@ -156,24 +156,29 @@ const initCamera3 = () => {
                         },
                         (decodedText, decodedResult) => {
                             // do something when code is read
+                            console.log('decodedText', decodedText)
                             resultQrText.value = decodedText;
                             resultDecodeQrText.value = decodedResult;
                         },
                         (errorMessage) => {
                             // parse error, ignore it.
+                            console.log('errorMessage', errorMessage)
                         }
                     )
                     .catch((err) => {
                         // Start failed, handle it.
+                        console.log('err', err)
                     });
-                const readerElement = document.getElementById('qr-shaded-region');
-                console.log(readerElement)
-                const overlay = document.createElement('div');
-                overlay.className = 'qr-overlay';
-                overlay.innerHTML = `
-                        <div class="scanning-line"></div>
-                    `;
-                readerElement.appendChild(overlay);
+                setTimeout(() => {
+                    const readerElement = document.getElementById('qr-shaded-region');
+                    console.log(readerElement)
+                    const overlay = document.createElement('div');
+                    overlay.className = 'qr-overlay';
+                    overlay.innerHTML = `
+                            <div class="scanning-line"></div>
+                        `;
+                    readerElement.appendChild(overlay);
+                }, 1000);
             }
         })
         .catch((err) => {
