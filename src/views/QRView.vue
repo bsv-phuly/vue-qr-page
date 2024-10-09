@@ -165,24 +165,60 @@ const initCamera3 = () => {
                             console.log('errorMessage', errorMessage)
                         }
                     )
+                    .then(() => {
+                        // Camera started successfully, add UI elements
+                        const addQrOverlay = () => {
+                            const readerElement = document.getElementById('qr-shaded-region');
+                            console.log(readerElement, 'readerElement')
+                            if (!readerElement) {
+                                setTimeout(addQrOverlay, 100);
+                                return;
+                            }
+                            
+                            // Add scanning line
+                            const overlay = document.createElement('div');
+                            overlay.className = 'qr-overlay';
+                            overlay.innerHTML = `
+                                <div class="scanning-line"></div>
+                            `;
+                            readerElement.appendChild(overlay);
+                            
+                            // Add corner elements
+                            const cornerElements = `
+                                <div class="corner corner-top-left"></div>
+                                <div class="corner corner-top-right"></div>
+                                <div class="corner corner-bottom-left"></div>
+                                <div class="corner corner-bottom-right"></div>
+                            `;
+                            readerElement.insertAdjacentHTML('beforeend', cornerElements);
+                        };
+                        
+                        // Start trying to add overlay
+                        addQrOverlay();
+                    })
                     .catch((err) => {
                         // Start failed, handle it.
                         console.log('err', err)
                     });
-                setTimeout(() => {
-                    const readerElement = document.getElementById('qr-shaded-region');
-                    console.log(readerElement)
-                    const overlay = document.createElement('div');
-                    overlay.className = 'qr-overlay';
-                    overlay.innerHTML = `
-                            <div class="scanning-line"></div>
-                            <div class="corner corner-top-left"></div>
-                            <div class="corner corner-top-right"></div>
-                            <div class="corner corner-bottom-left"></div>
-                            <div class="corner corner-bottom-right"></div>
-                        `;
-                    readerElement.appendChild(overlay);
-                }, 1000);
+                // setTimeout(() => {
+                //     const readerElement = document.getElementById('qr-shaded-region');
+                //     console.log(readerElement)
+                //     const overlay = document.createElement('div');
+                //     overlay.className = 'qr-overlay';
+                //     overlay.innerHTML = `
+                //             <div class="scanning-line"></div>
+                //         `;
+                //     readerElement.appendChild(overlay);
+                //         const cornerElements = `
+                //             <div class="corner corner-top-left"></div>
+                //             <div class="corner corner-top-right"></div>
+                //             <div class="corner corner-bottom-left"></div>
+                //             <div class="corner corner-bottom-right"></div>
+                //         `;
+                    
+                //     // Append corners to shaded region
+                //     readerElement.insertAdjacentHTML('beforeend', cornerElements);
+                // }, 1000);
             }
         })
         .catch((err) => {
@@ -355,7 +391,7 @@ const onDecode = async (result) => {
 }
 
 .corner-bottom-left {
-    bottom: -5px;
+    bottom: -3px;
     left: -5px;
     border-bottom: 5px solid;
     border-left: 5px solid;
@@ -363,7 +399,7 @@ const onDecode = async (result) => {
 }
 
 .corner-bottom-right {
-    bottom: -5px;
+    bottom: -3px;
     right: -5px;
     border-bottom: 5px solid;
     border-right: 5px solid;
