@@ -19,8 +19,8 @@
                     <img src="../assets/camera-switch.svg" alt="switch camera" />
                 </button>
             </qrcode-stream> -->
-            <!-- <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2> -->
-            <div id="qr-code-full-region" style="width: 100%"></div>
+            <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2>
+            <!-- <div id="qr-code-full-region" style="width: 100%"></div> -->
         </div>
         <!-- {{ resultQrText }}
         {{ resultDecodeQrText }} -->

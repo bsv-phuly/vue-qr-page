@@ -149,5 +149,11 @@ onBeforeUnmount(() => {
 <style scoped lang="css">
 .canvas {
     border-radius: 16px;
+    width: 50%;
+    border-width: auto;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.48);
+    box-sizing: border-box;
+    inset: 0px;
 }
 </style>
