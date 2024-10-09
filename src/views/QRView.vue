@@ -119,15 +119,26 @@ const initCamera2 = () => {
     html5QrcodeScanner.render(onScanSuccess, onScanError);
 
     setTimeout(() => {
-        const scanRegion = document.getElementById('reader__scan_region');
-        if (scanRegion) {
-            scanRegion.insertAdjacentHTML('beforeend', `
-                    <div class="corner corner-top-left"></div>
-                    <div class="corner corner-top-right"></div>
-                    <div class="corner corner-bottom-left"></div>
-                    <div class="corner corner-bottom-right"></div>
-                `);
-        }
+        // const scanRegion = document.getElementById('reader__scan_region');
+        // if (scanRegion) {
+        //     scanRegion.insertAdjacentHTML('beforeend', `
+        //             <div class="corner corner-top-left"></div>
+        //             <div class="corner corner-top-right"></div>
+        //             <div class="corner corner-bottom-left"></div>
+        //             <div class="corner corner-bottom-right"></div>
+        //         `);
+        // }
+        const readerElement = document.getElementById('qr-code-full-region');
+        const overlay = document.createElement('div');
+        overlay.className = 'qr-overlay';
+        overlay.innerHTML = `
+                <div class="scanning-line"></div>
+                <div class="corner corner-top-left"></div>
+                <div class="corner corner-top-right"></div>
+                <div class="corner corner-bottom-left"></div>
+                <div class="corner corner-bottom-right"></div>
+            `;
+        readerElement.appendChild(overlay);
     }, 1000);
 }
 
@@ -285,6 +296,28 @@ const onDecode = async (result) => {
     background-color: #0066ff;
     animation: scan 2s linear infinite;
     z-index: 1;
+}
+
+/* Custom overlay for QR box */
+.qr-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Horizontal scanning line */
+.scanning-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #0066ff;
+    animation: scan 2s linear infinite;
 }
 
 /* Corner indicators */
