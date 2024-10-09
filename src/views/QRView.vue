@@ -150,13 +150,6 @@ const initCamera2 = () => {
         //         <div class="corner corner-bottom-right"></div>
         //     `;
         // readerElement.appendChild(overlay);
-        const readerElement = document.getElementById('qr-shaded-region');
-        const overlay = document.createElement('div');
-        overlay.className = 'qr-overlay';
-        overlay.innerHTML = `
-                <div class="scanning-line"></div>
-            `;
-        readerElement.appendChild(overlay);
     }, 5000);
 }
 
@@ -201,6 +194,13 @@ const initCamera3 = () => {
 
 function onScanError(errorMessage) {
     console.warn(`QR error = ${errorMessage}`);
+    const readerElement = document.getElementById('qr-shaded-region');
+    const overlay = document.createElement('div');
+    overlay.className = 'qr-overlay';
+    overlay.innerHTML = `
+                <div class="scanning-line"></div>
+            `;
+    readerElement.appendChild(overlay);
 }
 
 const onScanSuccess = (decodedText, decodedResult) => {
