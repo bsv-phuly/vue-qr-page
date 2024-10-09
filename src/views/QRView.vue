@@ -146,14 +146,6 @@ const initCamera3 = () => {
                     formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
                 });
                 console.log(html5QrCode, 'html5QrCode')
-                const readerElement = document.getElementById('qr-shaded-region');
-                console.log(readerElement)
-                const overlay = document.createElement('div');
-                overlay.className = 'qr-overlay';
-                overlay.innerHTML = `
-                        <div class="scanning-line"></div>
-                    `;
-                readerElement.appendChild(overlay);
                 html5QrCode
                     .start(
                         cameraId,
@@ -174,6 +166,14 @@ const initCamera3 = () => {
                     .catch((err) => {
                         // Start failed, handle it.
                     });
+                const readerElement = document.getElementById('qr-shaded-region');
+                console.log(readerElement)
+                const overlay = document.createElement('div');
+                overlay.className = 'qr-overlay';
+                overlay.innerHTML = `
+                        <div class="scanning-line"></div>
+                    `;
+                readerElement.appendChild(overlay);
             }
         })
         .catch((err) => {
