@@ -164,6 +164,21 @@ onMounted(() => {
     initCamera();
 });
 
+const pauseCameraHandle = async () => {
+    if (html5QrCode) {
+        html5QrCode.pause(true)
+        const parentElement = document.getElementById('qr-code-full-region');
+        if (parentElement) {
+            const elements = parentElement.querySelectorAll('*')
+            elements.forEach(element => {
+                if (element.textContent.trim() === 'Scanner paused') { // Check if the textContent matches
+                element.style.display = 'none'; // Set display to none
+                }
+            });
+        }
+    }
+}
+
 const toggleCamera = async () => {
     if (html5QrCode) {
         await html5QrCode.stop()
@@ -173,11 +188,14 @@ const toggleCamera = async () => {
 }
 
 const cancelModal = async () => {
-    if (html5QrCode) {
-        html5QrCode.resume()
-    }
+    // if (html5QrCode) {
+    //     html5QrCode.resume()
+    // }
     showModal.value = false
     alertModal.value = true
+    if (html5QrCode) {
+        pauseCameraHandle()
+    }
 }
 
 const confirmSubmitQr = async () => {
@@ -237,7 +255,7 @@ const initCamera = () => {
                                 resultQrText.value = decodedText;
                                 resultDecodeQrText.value = decodedResult;
                                 console.log(html5QrCode, 'html5QrCode')
-                                html5QrCode.pause(true)
+                                pauseCameraHandle()
                                 showModal.value = true
                             }
                         },
