@@ -331,6 +331,39 @@ const onDecode = async (result) => {
 </script>
 
 <style lang="scss">
+.qr-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    .camera-toggle {
+        position: fixed;
+        top: calc(100vh - 122px);
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
+
 .qr-page .camera-view {
     overflow: hidden;
     height: 100vh;
@@ -415,7 +448,7 @@ const onDecode = async (result) => {
 }
 
 .corner-bottom-left {
-    bottom: -3px;
+    bottom: -10px;
     left: -5px;
     border-bottom: 5px solid;
     border-left: 5px solid;
@@ -423,7 +456,7 @@ const onDecode = async (result) => {
 }
 
 .corner-bottom-right {
-    bottom: -3px;
+    bottom: -10px;
     right: -5px;
     border-bottom: 5px solid;
     border-right: 5px solid;
@@ -481,32 +514,5 @@ button img {
 .error {
     color: red;
     font-weight: bold;
-}
-
-.camera-toggle {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    color: white;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-
-    &:hover {
-        background: rgba(0, 0, 0, 0.7);
-    }
-
-    svg {
-        width: 24px;
-        height: 24px;
-    }
 }
 </style>
