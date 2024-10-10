@@ -12,7 +12,9 @@
                 </button>
             </qrcode-stream> -->
             <!-- <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2> -->
-            <div id="qr-code-full-region" style="width: 100%;"></div>
+            <!-- <div class="qr-box"></div> -->
+            <div id="qr-code-full-region" style="width: 100%; height: 100vh;">
+            </div>
         </div>
         <!-- {{ resultQrText }}
         {{ resultDecodeQrText }} -->
@@ -46,8 +48,8 @@ const fps = ref({
 });
 const resultQrText = ref("");
 const resultDecodeQrText = ref();
-const qrWidth = ref();
-const qrHeight = ref();
+const qrWidth = ref(280);
+const qrHeight = ref(280);
 const isQrScan = ref(true);
 const resultScanQrText = ref("");
 const errorScan = ref("");
@@ -324,12 +326,13 @@ const onDecode = async (result) => {
 }
 
 .qr-shaded-region {
-    
+
 }
 
 /* Custom overlay for QR box */
 .qr-overlay {
     position: absolute;
+    top: 0;
     left: 0;
     transform: translate(-50%, -50%);
     width: 100%;
@@ -435,8 +438,8 @@ const onDecode = async (result) => {
     left: 50%;
     border: 1px solid red;
     text-align: center;
-    width: 200px;
-    height: 200px;
+    width: 280px;
+    height: 280px;
 }
 
 button {
