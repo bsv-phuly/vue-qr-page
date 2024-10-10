@@ -236,7 +236,7 @@ const initCamera = () => {
                             if (decodedText) {
                                 resultQrText.value = decodedText;
                                 resultDecodeQrText.value = decodedResult;
-                                html5QrCode.clear()
+                                console.log(html5QrCode, 'html5QrCode')
                                 html5QrCode.pause(true)
                                 showModal.value = true
                             }
