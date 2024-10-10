@@ -448,7 +448,7 @@ const onDecode = async (result) => {
 }
 
 .corner-bottom-left {
-    bottom: -10px;
+    bottom: -3px;
     left: -5px;
     border-bottom: 5px solid;
     border-left: 5px solid;
@@ -456,7 +456,7 @@ const onDecode = async (result) => {
 }
 
 .corner-bottom-right {
-    bottom: -10px;
+    bottom: -3px;
     right: -5px;
     border-bottom: 5px solid;
     border-right: 5px solid;
