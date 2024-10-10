@@ -56,6 +56,7 @@ const errorScan = ref("");
 onMounted(() => {
     // initCamera();
     // initCamera3();
+    isQrScan.value = true;
 });
 
 const initCamera = () => {
