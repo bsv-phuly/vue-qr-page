@@ -136,7 +136,7 @@ const emit = defineEmits(["result"]);
 const result = ref("");
 const error = ref("");
 const facingMode = ref("environment");
-const aspectRatio = ref(4 / 3);
+const aspectRatio = ref(16/9);
 const height = ref("50%");
 const qrbox = ref({
     type: Number,
@@ -246,7 +246,7 @@ const initCamera = () => {
                             fps: 10, // Optional, frame per seconds for qr code scanning
                             qrbox: 280, // Optional, if you want bounded box UI
                             videoConstraints: { facingMode: currentFacingMode.value },
-                            aspectRatio: window.innerHeight / window.innerWidth,
+                            aspectRatio: aspectRatio,
                         },
                         (decodedText, decodedResult) => {
                             // do something when code is read
@@ -293,7 +293,7 @@ const initCamera = () => {
                             `;
                             readerElement.insertAdjacentHTML('beforeend', cornerElements);
                             if (videoElement) {
-                                videoElement.style.setProperty('width', 'auto', 'important')
+                                // videoElement.style.setProperty('width', 'auto', 'important')
                             }
                             document.body.style.overflow = 'hidden'
                             isQrScan.value = true
