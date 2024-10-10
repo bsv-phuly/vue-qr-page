@@ -55,7 +55,7 @@ const errorScan = ref("");
 
 onMounted(() => {
     // initCamera();
-    initCamera3();
+    // initCamera3();
 });
 
 const initCamera = () => {
