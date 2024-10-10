@@ -11,14 +11,14 @@ const qrHeight = ref();
 </script>
 
 <template>
-  <header>
+  <!-- <header>
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
-  </header>
+  </header> -->
   <QRView/>
   <!-- <Qr2: width="qrWidth" :height="qrHeight" @onDecode="onDecode" :isQrScan="i"></Qr2:> -->
 

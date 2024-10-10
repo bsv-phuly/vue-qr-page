@@ -1,13 +1,5 @@
 <template>
     <div class="qr-page">
-        <p style="color: red">{{ error }}</p>
-        <!-- <p style="color: red">{{ errorScan }}</p> -->
-
-        <p>
-            Last result: <b>{{ result }}</b>
-            <!-- Last result: <b>{{ resultScanQrText }}</b> -->
-        </p>
-
         <div class="camera-view" style="border: 2px solid black">
             <!-- <qrcode-stream :formats="['qr_code', 'code_128']"
                 :constraints="{ facingMode, aspectRatio }" 
