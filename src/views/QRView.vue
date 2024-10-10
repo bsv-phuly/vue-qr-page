@@ -65,85 +65,18 @@ const errorScan = ref("");
 let html5QrCode
 
 onMounted(() => {
-    // initCamera();
-    initCamera3();
-    // isQrScan.value = true;
+    initCamera();
 });
 
 const toggleCamera = async () => {
     if (html5QrCode) {
         await html5QrCode.stop()
         currentFacingMode.value = currentFacingMode.value === 'environment' ? 'user' : 'environment'
-        initCamera3()
+        initCamera()
     }
 }
+
 const initCamera = () => {
-    Html5Qrcode.getCameras()
-        .then((devices) => {
-            /**
-             * devices would be an array of objects of type:
-             * { id: "id", label: "label" }
-             */
-            if (devices && devices.length) {
-                var cameraId = devices[0].id;
-                const html5QrCode = new Html5Qrcode("qr-code-full-region", {
-                    formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
-                });
-                html5QrCode
-                    .start(
-                        cameraId,
-                        {
-                            fps: 10, // Optional, frame per seconds for qr code scanning
-                            qrbox: { width: 250, height: 250 }, // Optional, if you want bounded box UI
-                            videoConstraints: { facingMode: "environment" },
-                        },
-                        (decodedText, decodedResult) => {
-                            // do something when code is read
-                            resultQrText.value = decodedText;
-                            resultDecodeQrText.value = decodedResult;
-                        },
-                        (errorMessage) => {
-                            // parse error, ignore it.
-                            console.log(errorMessage, 'errorMessage')
-                        }
-                    )
-                    .catch((err) => {
-                        // Start failed, handle it.
-                        console.log(err, 'err')
-                    });
-            }
-        })
-        .catch((err) => {
-            // handle err
-        });
-};
-
-const initCamera2 = () => {
-    let config = {
-        fps: 10,
-        qrbox: {
-            width: 250,
-            height: 250
-        },
-        rememberLastUsedCamera: true,
-        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
-    };
-    let html5QrcodeScanner = new Html5QrcodeScanner(
-        "qr-code-full-region", config, false);
-    html5QrcodeScanner.render(onScanSuccess, onScanError);
-
-    setTimeout(() => {
-        const readerElement = document.getElementById('qr-shaded-region');
-        const overlay = document.createElement('div');
-        overlay.className = 'qr-overlay';
-        overlay.innerHTML = `
-                <div class="scanning-line"></div>
-            `;
-        readerElement.appendChild(overlay);
-    }, 5000);
-}
-
-const initCamera3 = () => {
     Html5Qrcode.getCameras()
         .then((devices) => {
             /**
@@ -173,6 +106,7 @@ const initCamera3 = () => {
                             resultQrText.value = decodedText;
                             resultDecodeQrText.value = decodedResult;
                             html5QrCode.clear()
+                            html5QrCode.pause(true)
                         },
                         (errorMessage) => {
                             // parse error, ignore it.
@@ -209,6 +143,7 @@ const initCamera3 = () => {
                             if (videoElement) {
                                 videoElement.style.setProperty('width', 'auto', 'important')
                             }
+                            document.body.style.overflow = 'hidden'
                         };
 
                         // Start trying to add overlay
