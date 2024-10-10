@@ -275,6 +275,11 @@ const initCamera = () => {
                                 setTimeout(addQrOverlay, 100);
                                 return;
                             }
+                            if (readerElement) {
+                                while (readerElement.firstChild) {
+                                    readerElement.removeChild(readerElement.firstChild);
+                                }
+                            }
 
                             // Add scanning line
                             const overlay = document.createElement('div');
@@ -303,6 +308,7 @@ const initCamera = () => {
                             console.log(borderInfo, 'borderInfo')
                             console.log(topBorderPixels, 'topBorderPixels')
                             console.log(bottomBorderPixels, 'bottomBorderPixels')
+                            readerElement.style.borderTopWidth = `${topBorderPixels}px`;
                             readerElement.style.borderBottomWidth = `${bottomBorderPixels}px`;
                             isQrScan.value = true
                         };
