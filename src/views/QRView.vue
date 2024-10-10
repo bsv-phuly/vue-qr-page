@@ -143,7 +143,7 @@ const initCamera3 = () => {
                         cameraId,
                         {
                             fps: 10, // Optional, frame per seconds for qr code scanning
-                            qrbox: { width: 250, height: 250 }, // Optional, if you want bounded box UI
+                            qrbox: { width: 280, height: 280 }, // Optional, if you want bounded box UI
                             videoConstraints: { facingMode: "environment" },
                         },
                         (decodedText, decodedResult) => {
@@ -314,13 +314,17 @@ const onDecode = async (result) => {
 #qr-code-full-region {
     width: 100%;
     max-width: 600px;
-    margin: 0 auto;
+    margin: auto;
     position: relative;
 }
 
 #qr-code-full-region__scan_region {
     position: relative;
     overflow: hidden;
+}
+
+.qr-shaded-region {
+    
 }
 
 /* Custom overlay for QR box */
