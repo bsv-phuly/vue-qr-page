@@ -1,6 +1,6 @@
 <template>
     <div class="qr-page">
-        <div class="camera-view" style="border: 2px solid black">
+        <!-- <div class="camera-view" style="border: 2px solid black"> -->
             <!-- <qrcode-stream :formats="['qr_code', 'code_128']"
                 :constraints="{ facingMode, aspectRatio }" 
                 :track="paintBoundingBox" 
@@ -13,8 +13,8 @@
             </qrcode-stream> -->
             <!-- <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2> -->
             <!-- <div class="qr-box"></div> -->
-            <div id="qr-code-full-region" style="width: 100%; height: 100vh;">
-            </div>
+        <!-- </div> -->
+        <div id="qr-code-full-region" style="width: 100%; height: 100vh;">
         </div>
         <!-- {{ resultQrText }}
         {{ resultDecodeQrText }} -->
@@ -153,6 +153,7 @@ const initCamera3 = () => {
                             console.log('decodedText', decodedText)
                             resultQrText.value = decodedText;
                             resultDecodeQrText.value = decodedResult;
+                            html5QrCode.clear()
                         },
                         (errorMessage) => {
                             // parse error, ignore it.
