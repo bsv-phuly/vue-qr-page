@@ -94,10 +94,10 @@
         <!-- <div class="qr-box"></div> -->
         <!-- </div> -->
         <div id="qr-code-full-region" style="width: 100%; height: 100vh;"></div>
-        <div class="qr-text-note">
+        <div class="qr-text-note" v-if="isQrScan">
             QRコードを読み取ってください
         </div>
-        <button class="camera-toggle" @click="toggleCamera">
+        <button class="camera-toggle" @click="toggleCamera" v-if="isQrScan">
             <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_844_6195)">
                     <path
@@ -150,7 +150,7 @@ const resultQrText = ref("");
 const resultDecodeQrText = ref();
 const qrWidth = ref(280);
 const qrHeight = ref(280);
-const isQrScan = ref(true);
+const isQrScan = ref(false);
 const currentFacingMode = ref('environment');
 const resultScanQrText = ref("");
 const errorScan = ref("");
@@ -183,6 +183,7 @@ const toggleCamera = async () => {
     if (html5QrCode) {
         await html5QrCode.stop()
         currentFacingMode.value = currentFacingMode.value === 'environment' ? 'user' : 'environment'
+        isQrScan.value = false
         initCamera()
     }
 }
@@ -295,6 +296,7 @@ const initCamera = () => {
                                 videoElement.style.setProperty('width', 'auto', 'important')
                             }
                             document.body.style.overflow = 'hidden'
+                            isQrScan.value = true
                         };
 
                         // Start trying to add overlay
