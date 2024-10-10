@@ -183,6 +183,7 @@ const initCamera3 = () => {
                         // Camera started successfully, add UI elements
                         const addQrOverlay = () => {
                             const readerElement = document.getElementById('qr-shaded-region');
+                            let videoElement = document.querySelector('#qr-code-full-region video')
                             console.log(readerElement, 'readerElement')
                             if (!readerElement) {
                                 setTimeout(addQrOverlay, 100);
@@ -205,6 +206,9 @@ const initCamera3 = () => {
                                 <div class="corner corner-bottom-right"></div>
                             `;
                             readerElement.insertAdjacentHTML('beforeend', cornerElements);
+                            if (videoElement) {
+                                videoElement.style.setProperty('width', 'auto', 'important')
+                            }
                         };
 
                         // Start trying to add overlay
@@ -340,7 +344,6 @@ const onDecode = async (result) => {
     position: relative;
     video {
         height: 100vh;
-        width: auto;
     }
 }
 
