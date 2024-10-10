@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center qr-field">
         <video ref="video" autoplay playsinline style="display: none"></video>
         <canvas class="canvas" ref="canvas" :hidden="!canvasVisible"></canvas>
     </div>
@@ -146,13 +146,12 @@ onBeforeUnmount(() => {
     }
 });
 </script>
-<style scoped lang="css">
+<style scoped lang="scss">
+$border-width: calc(min(280px * 0.01, 3px));
 .canvas {
     border-radius: 16px;
-    width: 50%;
-    border-width: auto;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0.48);
+    width: 100%;
+    border: $border-width solid gba(0, 0, 0, 0.48);
     box-sizing: border-box;
     inset: 0px;
 }
