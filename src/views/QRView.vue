@@ -293,7 +293,7 @@ const initCamera = () => {
                             `;
                             readerElement.insertAdjacentHTML('beforeend', cornerElements);
                             if (videoElement) {
-                                // videoElement.style.setProperty('width', 'auto', 'important')
+                                videoElement.style.setProperty('width', 'auto', 'important')
                             }
                             document.body.style.overflow = 'hidden'
                             isQrScan.value = true
