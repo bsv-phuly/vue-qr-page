@@ -296,6 +296,14 @@ const initCamera = () => {
                                 videoElement.style.setProperty('width', 'auto', 'important')
                             }
                             document.body.style.overflow = 'hidden'
+                            const viewportHeight = window.innerHeight;
+                            const borderInfo = getBorderBottomWidth(readerElement)
+                            const topBorderPixels = viewportHeight * 0.30;
+                            const bottomBorderPixels = borderInfo.numericValue + (borderInfo.numericValue - topBorderPixels)
+                            console.log(borderInfo, 'borderInfo')
+                            console.log(topBorderPixels, 'topBorderPixels')
+                            console.log(bottomBorderPixels, 'bottomBorderPixels')
+                            readerElement.style.borderBottomWidth = `${bottomBorderPixels}px`;
                             isQrScan.value = true
                         };
 
@@ -306,30 +314,28 @@ const initCamera = () => {
                         // Start failed, handle it.
                         console.log('err', err)
                     });
-                // setTimeout(() => {
-                //     const readerElement = document.getElementById('qr-shaded-region');
-                //     console.log(readerElement)
-                //     const overlay = document.createElement('div');
-                //     overlay.className = 'qr-overlay';
-                //     overlay.innerHTML = `
-                //             <div class="scanning-line"></div>
-                //         `;
-                //     readerElement.appendChild(overlay);
-                //         const cornerElements = `
-                //             <div class="corner corner-top-left"></div>
-                //             <div class="corner corner-top-right"></div>
-                //             <div class="corner corner-bottom-left"></div>
-                //             <div class="corner corner-bottom-right"></div>
-                //         `;
-
-                //     // Append corners to shaded region
-                //     readerElement.insertAdjacentHTML('beforeend', cornerElements);
-                // }, 1000);
             }
         })
         .catch((err) => {
             // handle err
         });
+}
+
+function getBorderBottomWidth(element) {
+    const computedStyle = window.getComputedStyle(element);
+    const borderWidth = computedStyle.borderBottomWidth;
+    
+    // This will return the computed value in pixels
+    console.log(`Border bottom width: ${borderWidth}`);
+    
+    // If you need the numeric value without 'px'
+    const numericValue = parseFloat(borderWidth);
+    console.log(`Numeric value: ${numericValue}`);
+    
+    return {
+        withUnit: borderWidth,
+        numericValue: numericValue
+    };
 }
 
 function onScanError(errorMessage) {
