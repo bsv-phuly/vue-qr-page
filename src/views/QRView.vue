@@ -1,7 +1,7 @@
 <template>
     <div class="qr-page">
-        <div class="camera-view" style="border: 2px solid black">
-            <!-- <qrcode-stream :formats="['qr_code', 'code_128']"
+        <!-- <div class="camera-view" style="border: 2px solid black"> -->
+        <!-- <qrcode-stream :formats="['qr_code', 'code_128']"
                 :constraints="{ facingMode, aspectRatio }" 
                 :track="paintBoundingBox" 
                 @error="onError"
@@ -11,10 +11,20 @@
                     <img src="../assets/camera-switch.svg" alt="switch camera" />
                 </button>
             </qrcode-stream> -->
-            <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2>
-            <!-- <div class="qr-box"></div> -->
+        <!-- <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2> -->
+        <!-- <div class="qr-box"></div> -->
+        <!-- </div> -->
+        <div id="qr-code-full-region" style="width: 100%; height: 100vh;">
+            <button class="camera-toggle" @click="toggleCamera">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 16v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h2"></path>
+                    <path d="M12 8V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2"></path>
+                    <path d="M12 12 16 8"></path>
+                    <path d="m8 16 4-4"></path>
+                </svg>
+            </button>
         </div>
-        <!-- <div id="qr-code-full-region" style="width: 100%; height: 100vh;"></div> -->
         <!-- {{ resultQrText }}
         {{ resultDecodeQrText }} -->
     </div>
@@ -50,15 +60,24 @@ const resultDecodeQrText = ref();
 const qrWidth = ref(280);
 const qrHeight = ref(280);
 const isQrScan = ref(true);
+const currentFacingMode = ref('environment');
 const resultScanQrText = ref("");
 const errorScan = ref("");
+let html5QrCode
 
 onMounted(() => {
     // initCamera();
-    // initCamera3();
-    isQrScan.value = true;
+    initCamera3();
+    // isQrScan.value = true;
 });
 
+const toggleCamera = async () => {
+    if (html5QrCode) {
+        await html5QrCode.stop()
+        currentFacingMode.value = currentFacingMode.value === 'environment' ? 'user' : 'environment'
+        initCamera3()
+    }
+}
 const initCamera = () => {
     Html5Qrcode.getCameras()
         .then((devices) => {
@@ -136,7 +155,7 @@ const initCamera3 = () => {
             if (devices && devices.length) {
                 var cameraId = devices[0].id;
                 console.log(cameraId)
-                const html5QrCode = new Html5Qrcode("qr-code-full-region", {
+                html5QrCode = new Html5Qrcode("qr-code-full-region", {
                     formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
                 });
                 console.log(html5QrCode, 'html5QrCode')
@@ -145,8 +164,9 @@ const initCamera3 = () => {
                         cameraId,
                         {
                             fps: 10, // Optional, frame per seconds for qr code scanning
-                            qrbox: { width: 280, height: 280 }, // Optional, if you want bounded box UI
-                            videoConstraints: { facingMode: "environment" },
+                            qrbox: 280, // Optional, if you want bounded box UI
+                            videoConstraints: { facingMode: currentFacingMode.value },
+                            aspectRatio: window.innerHeight / window.innerWidth,
                         },
                         (decodedText, decodedResult) => {
                             // do something when code is read
@@ -169,7 +189,7 @@ const initCamera3 = () => {
                                 setTimeout(addQrOverlay, 100);
                                 return;
                             }
-                            
+
                             // Add scanning line
                             const overlay = document.createElement('div');
                             overlay.className = 'qr-overlay';
@@ -177,7 +197,7 @@ const initCamera3 = () => {
                                 <div class="scanning-line"></div>
                             `;
                             readerElement.appendChild(overlay);
-                            
+
                             // Add corner elements
                             const cornerElements = `
                                 <div class="corner corner-top-left"></div>
@@ -187,7 +207,7 @@ const initCamera3 = () => {
                             `;
                             readerElement.insertAdjacentHTML('beforeend', cornerElements);
                         };
-                        
+
                         // Start trying to add overlay
                         addQrOverlay();
                     })
@@ -210,7 +230,7 @@ const initCamera3 = () => {
                 //             <div class="corner corner-bottom-left"></div>
                 //             <div class="corner corner-bottom-right"></div>
                 //         `;
-                    
+
                 //     // Append corners to shaded region
                 //     readerElement.insertAdjacentHTML('beforeend', cornerElements);
                 // }, 1000);
@@ -307,7 +327,7 @@ const onDecode = async (result) => {
 };
 </script>
 
-<style>
+<style lang="scss">
 .qr-page .camera-view {
     overflow: hidden;
     height: 100vh;
@@ -326,9 +346,7 @@ const onDecode = async (result) => {
     overflow: hidden;
 }
 
-.qr-shaded-region {
-
-}
+.qr-shaded-region {}
 
 /* Custom overlay for QR box */
 .qr-overlay {
@@ -457,5 +475,32 @@ button img {
 .error {
     color: red;
     font-weight: bold;
+}
+
+.camera-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
 }
 </style>
