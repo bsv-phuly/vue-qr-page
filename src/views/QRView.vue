@@ -14,17 +14,16 @@
         <!-- <Qr2 :width="qrWidth" :height="qrHeight" @update:onDecode="onDecode" :isQrScan="isQrScan"></Qr2> -->
         <!-- <div class="qr-box"></div> -->
         <!-- </div> -->
-        <div id="qr-code-full-region" style="width: 100%; height: 100vh;">
-            <button class="camera-toggle" @click="toggleCamera">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 16v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h2"></path>
-                    <path d="M12 8V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2"></path>
-                    <path d="M12 12 16 8"></path>
-                    <path d="m8 16 4-4"></path>
-                </svg>
-            </button>
-        </div>
+        <div id="qr-code-full-region" style="width: 100%; height: 100vh;"></div>
+        <button class="camera-toggle" @click="toggleCamera">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 16v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h2"></path>
+                <path d="M12 8V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2"></path>
+                <path d="M12 12 16 8"></path>
+                <path d="m8 16 4-4"></path>
+            </svg>
+        </button>
         <!-- {{ resultQrText }}
         {{ resultDecodeQrText }} -->
     </div>
@@ -339,6 +338,10 @@ const onDecode = async (result) => {
     max-width: 600px;
     margin: auto;
     position: relative;
+    video {
+        height: 100vh;
+        width: auto;
+    }
 }
 
 #qr-code-full-region__scan_region {
@@ -480,7 +483,7 @@ button img {
 .camera-toggle {
     position: fixed;
     top: 20px;
-    right: 20px;
+    left: 20px;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.5);
     border: none;
