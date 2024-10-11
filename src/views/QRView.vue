@@ -184,6 +184,7 @@ onMounted(() => {
 watch(
     () => showModal.value,
     () => {
+        console.log(showModal.value, 'showModal.value')
         if (showModal.value) {
             toggleQrScanner(false)
         } else {
@@ -366,7 +367,7 @@ const initCamera = () => {
                             readerElement.style.borderBottomWidth = `${bottomBorderPixels}px`;
                             isQrScan.value = true
                             setTimeout(() => {
-                                resumeCameraHandle()
+                                setBtnPosition()
                             }, 50)
                         };
 
