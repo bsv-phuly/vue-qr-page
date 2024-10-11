@@ -131,6 +131,9 @@
                 </defs>
             </svg>
         </div>
+        <div ref="qrTextEl" class="qr-text-note">
+            QRコードを読み取ってください
+        </div>
     </div>
 </template>
 
@@ -352,8 +355,14 @@ const initCamera = () => {
                             readerElement.style.borderTopWidth = `${topBorderPixels}px`;
                             readerElement.style.borderBottomWidth = `${bottomBorderPixels}px`;
                             isQrScan.value = true
-                            qrTextEl.value.style.bottom = `${bottomBorderPixels - 65}px`
-                            cameraBtnEl.value.style.bottom = `${qrTextEl.value.style.bottom - 85}px`
+                            console.log(qrTextEl.value)
+                            console.log(qrTextEl.value.target)
+                            if (qrTextEl.value) {
+                                qrTextEl.value.style.bottom = `${bottomBorderPixels - 65}px`
+                            }
+                            if (cameraBtnEl.value) {
+                                cameraBtnEl.value.style.bottom = `${qrTextEl.value.style.bottom - 85}px`
+                            }
                         };
 
                         // Start trying to add overlay
