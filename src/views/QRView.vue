@@ -189,6 +189,7 @@ watch(
             toggleQrScanner(false)
         } else {
             toggleQrScanner(true)
+            setBtnPosition()
         }
     }
 );
