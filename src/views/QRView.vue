@@ -232,6 +232,9 @@ const cancelModal = async () => {
     // }
     showModal.value = false
     alertModal.value = true
+    setTimeout(() => {
+        setBtnPosition()
+    }, 50)
 }
 
 const confirmSubmitQr = async () => {
@@ -262,8 +265,6 @@ const toggleQrScanner = (isOn) => {
 }
 
 const setBtnPosition = () => {
-    console.log(qrTextEl.value)
-    console.log(cameraBtnEl.value)
     if (qrTextEl.value) {
         qrTextEl.value.style.bottom = `${borderBottomWidthQr.value - 65}px`
     }
@@ -361,9 +362,6 @@ const initCamera = () => {
                             const borderInfo = getBorderTopWidth(readerElement)
                             const bottomBorderPixels = viewportHeight * 0.35;
                             const topBorderPixels = borderInfo.numericValue + (borderInfo.numericValue - bottomBorderPixels)
-                            console.log(borderInfo, 'borderInfo')
-                            console.log(topBorderPixels, 'topBorderPixels')
-                            console.log(bottomBorderPixels, 'bottomBorderPixels')
                             borderBottomWidthQr.value = bottomBorderPixels
                             readerElement.style.borderTopWidth = `${topBorderPixels}px`;
                             readerElement.style.borderBottomWidth = `${bottomBorderPixels}px`;
