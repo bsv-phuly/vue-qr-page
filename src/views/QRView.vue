@@ -334,7 +334,7 @@ const initCamera = () => {
                             document.body.style.overflow = 'hidden'
                             const viewportHeight = window.innerHeight;
                             const borderInfo = getBorderBottomWidth(readerElement)
-                            const topBorderPixels = viewportHeight * 0.30;
+                            const topBorderPixels = viewportHeight * 0.29;
                             const bottomBorderPixels = borderInfo.numericValue + (borderInfo.numericValue - topBorderPixels)
                             console.log(borderInfo, 'borderInfo')
                             console.log(topBorderPixels, 'topBorderPixels')
