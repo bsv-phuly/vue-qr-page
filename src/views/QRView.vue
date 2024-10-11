@@ -362,12 +362,12 @@ const initCamera = () => {
                         // Start trying to add overlay
                         addQrOverlay();
                         console.log(qrTextEl.value)
-                        console.log(qrTextEl.value.target)
+                        console.log(cameraBtnEl.value)
                         if (qrTextEl.value) {
                             qrTextEl.value.style.bottom = `${borderBottomWidthQr.value - 65}px`
                         }
                         if (cameraBtnEl.value) {
-                            cameraBtnEl.value.style.bottom = `${qrTextEl.value.style.bottom - 85}px`
+                            cameraBtnEl.value.style.bottom = `${(borderBottomWidthQr.value - 65) - 85}px`
                         }
                     })
                     .catch((err) => {
