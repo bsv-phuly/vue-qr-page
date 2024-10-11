@@ -17,20 +17,29 @@
         overlay-transition="vfm-fade" content-transition="vfm-fade" :click-to-close="false">
         <svg width="121" height="121" viewBox="0 0 121 121" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_844_6322)">
-            <path d="M39.302 9.66504C32.6291 12.4272 26.5656 16.4764 21.4575 21.5817" stroke="#0066FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M9.54088 39.4258C6.76985 46.0887 5.33707 53.2318 5.32422 60.448" stroke="#0066FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M9.54077 81.4707C12.3029 88.1435 16.3522 94.2071 21.4574 99.3151" stroke="#0066FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M39.302 111.231C45.9649 114.002 53.108 115.435 60.3242 115.448" stroke="#0066FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M81.3464 111.231C88.0193 108.469 94.0828 104.42 99.1909 99.3145" stroke="#0066FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M111.108 81.4704C113.879 74.8075 115.311 67.6644 115.324 60.4482" stroke="#0066FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M111.108 39.4255C108.345 32.7527 104.296 26.6891 99.1909 21.5811" stroke="#0066FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M81.3464 9.66491C74.6835 6.89387 67.5404 5.46109 60.3242 5.44824" stroke="#0066FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M38.8242 63.4482L53.8242 78.4482L83.8242 48.4482" stroke="#0066FF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M39.302 9.66504C32.6291 12.4272 26.5656 16.4764 21.4575 21.5817" stroke="#0066FF"
+                    stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M9.54088 39.4258C6.76985 46.0887 5.33707 53.2318 5.32422 60.448" stroke="#0066FF"
+                    stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M9.54077 81.4707C12.3029 88.1435 16.3522 94.2071 21.4574 99.3151" stroke="#0066FF"
+                    stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M39.302 111.231C45.9649 114.002 53.108 115.435 60.3242 115.448" stroke="#0066FF"
+                    stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M81.3464 111.231C88.0193 108.469 94.0828 104.42 99.1909 99.3145" stroke="#0066FF"
+                    stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M111.108 81.4704C113.879 74.8075 115.311 67.6644 115.324 60.4482" stroke="#0066FF"
+                    stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M111.108 39.4255C108.345 32.7527 104.296 26.6891 99.1909 21.5811" stroke="#0066FF"
+                    stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M81.3464 9.66491C74.6835 6.89387 67.5404 5.46109 60.3242 5.44824" stroke="#0066FF"
+                    stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M38.8242 63.4482L53.8242 78.4482L83.8242 48.4482" stroke="#0066FF" stroke-width="10"
+                    stroke-linecap="round" stroke-linejoin="round" />
             </g>
             <defs>
-            <clipPath id="clip0_844_6322">
-            <rect width="120" height="120" fill="white" transform="translate(0.324219 0.448242)"/>
-            </clipPath>
+                <clipPath id="clip0_844_6322">
+                    <rect width="120" height="120" fill="white" transform="translate(0.324219 0.448242)" />
+                </clipPath>
             </defs>
         </svg>
         <div class="success-title">
@@ -41,14 +50,16 @@
         overlay-transition="vfm-fade" content-transition="vfm-fade" :click-to-close="false">
         <svg width="121" height="121" viewBox="0 0 121 121" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_844_6263)">
-            <path d="M60.0498 83.5352V83.61" stroke="#D01000" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M60.0498 39.6104V64.0729" stroke="#D01000" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="60.0498" cy="60.6797" r="53" stroke="#D01000" stroke-width="4"/>
+                <path d="M60.0498 83.5352V83.61" stroke="#D01000" stroke-width="12" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M60.0498 39.6104V64.0729" stroke="#D01000" stroke-width="12" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <circle cx="60.0498" cy="60.6797" r="53" stroke="#D01000" stroke-width="4" />
             </g>
             <defs>
-            <clipPath id="clip0_844_6263">
-            <rect width="120" height="120" fill="white" transform="translate(0.0498047 0.860352)"/>
-            </clipPath>
+                <clipPath id="clip0_844_6263">
+                    <rect width="120" height="120" fill="white" transform="translate(0.0498047 0.860352)" />
+                </clipPath>
             </defs>
         </svg>
         <div class="alert-title">
@@ -62,13 +73,15 @@
         overlay-transition="vfm-fade" content-transition="vfm-fade" :click-to-close="false">
         <svg width="91" height="91" viewBox="0 0 91 91" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_844_6225)">
-            <path d="M74.7998 16.751L16.2998 74.9697" stroke="white" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M16.2998 16.751L74.7998 74.9697" stroke="white" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M74.7998 16.751L16.2998 74.9697" stroke="white" stroke-width="18" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M16.2998 16.751L74.7998 74.9697" stroke="white" stroke-width="18" stroke-linecap="round"
+                    stroke-linejoin="round" />
             </g>
             <defs>
-            <clipPath id="clip0_844_6225">
-            <rect width="90" height="90" fill="white" transform="translate(0.549805 0.860352)"/>
-            </clipPath>
+                <clipPath id="clip0_844_6225">
+                    <rect width="90" height="90" fill="white" transform="translate(0.549805 0.860352)" />
+                </clipPath>
             </defs>
         </svg>
         <div class="error-title">
@@ -131,12 +144,13 @@ import {
 import { defineEmits } from "vue";
 import Qr2 from "@/components/Qr2.vue";
 import { Html5QrcodeScanType } from "html5-qrcode/esm/core";
+import { watch } from "vue";
 
 const emit = defineEmits(["result"]);
 const result = ref("");
 const error = ref("");
 const facingMode = ref("environment");
-const aspectRatio = ref(16/9);
+const aspectRatio = ref(16 / 9);
 const height = ref("50%");
 const qrbox = ref({
     type: Number,
@@ -164,6 +178,17 @@ onMounted(() => {
     initCamera();
 });
 
+watch(
+    () => showModal.value,
+    () => {
+        if (showModal.value) {
+            toggleQrScanner(false)
+        } else {
+            toggleQrScanner(true)
+        }
+    }
+);
+
 const pauseCameraHandle = async () => {
     if (html5QrCode) {
         html5QrCode.pause(true)
@@ -172,7 +197,7 @@ const pauseCameraHandle = async () => {
             const elements = parentElement.querySelectorAll('*')
             elements.forEach(element => {
                 if (element.textContent.trim() === 'Scanner paused') { // Check if the textContent matches
-                element.style.display = 'none'; // Set display to none
+                    element.style.display = 'none'; // Set display to none
                 }
             });
         }
@@ -222,6 +247,12 @@ const closeError = async () => {
     if (html5QrCode) {
         html5QrCode.resume()
     }
+}
+
+const toggleQrScanner = (isOn) => {
+    const readerElement = document.getElementById('qr-shaded-region');
+    readerElement.style.display = isOn ? 'block' : 'none'
+    isQrScan.value = isOn
 }
 
 const initCamera = () => {
@@ -330,14 +361,14 @@ const initCamera = () => {
 function getBorderBottomWidth(element) {
     const computedStyle = window.getComputedStyle(element);
     const borderWidth = computedStyle.borderBottomWidth;
-    
+
     // This will return the computed value in pixels
     console.log(`Border bottom width: ${borderWidth}`);
-    
+
     // If you need the numeric value without 'px'
     const numericValue = parseFloat(borderWidth);
     console.log(`Numeric value: ${numericValue}`);
-    
+
     return {
         withUnit: borderWidth,
         numericValue: numericValue
@@ -483,6 +514,7 @@ const onDecode = async (result) => {
         z-index: 1000;
         width: 75%;
     }
+
     button {
         position: absolute;
         left: 10px;
@@ -645,9 +677,11 @@ button img {
     justify-content: center;
     z-index: 9999;
     animation: opacityIn 0.5s forwards;
+
     &.hidden-background {
         display: none;
     }
+
     @keyframes opacityIn {
         from {
             opacity: 0;
@@ -657,6 +691,7 @@ button img {
             opacity: 1;
         }
     }
+
     .confirm-modal-content {
         position: relative;
         display: flex;
@@ -667,15 +702,18 @@ button img {
         background-color: #ffffff;
         padding: 24px;
         gap: 24px;
+
         &.error {
             background-color: #D01000;
         }
     }
+
     svg {
         width: 100%;
         text-align: center;
         margin: 0 auto;
     }
+
     .success-title {
         font-family: 'SF Pro Text', sans-serif;
         font-size: 16px;
@@ -684,6 +722,7 @@ button img {
         text-align: center;
         color: #004BDD;
     }
+
     .alert-title {
         font-family: 'SF Pro Text', sans-serif;
         font-size: 16px;
@@ -692,6 +731,7 @@ button img {
         text-align: center;
         color: #D01000;
     }
+
     .error-title {
         font-family: 'SF Pro Text', sans-serif;
         font-size: 16px;
@@ -700,6 +740,7 @@ button img {
         text-align: center;
         color: #FFFFFF;
     }
+
     .title {
         font-family: 'Noto sans JP', sans-serif;
         font-size: 18px;
@@ -708,12 +749,14 @@ button img {
         text-align: center;
         color: #000000;
     }
+
     .btn-layout {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 21px;
     }
+
     .cancel-btn {
         font-family: 'Noto sans JP', sans-serif;
         font-size: 16px;
@@ -727,6 +770,7 @@ button img {
         background: linear-gradient(90deg, #516682 0%, #3D4F67 100%);
         border-radius: 8px;
     }
+
     .submit-btn {
         font-family: 'Noto sans JP', sans-serif;
         font-size: 16px;
@@ -740,6 +784,7 @@ button img {
         background: linear-gradient(90deg, #5197FF 0%, #0066FF 100%);
         border-radius: 8px;
     }
+
     .btn-try-again {
         display: flex;
         justify-content: center;
