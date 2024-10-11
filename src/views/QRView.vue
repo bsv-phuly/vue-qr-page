@@ -189,7 +189,6 @@ watch(
             toggleQrScanner(false)
         } else {
             toggleQrScanner(true)
-            setBtnPosition()
         }
     }
 );
@@ -197,7 +196,9 @@ watch(
 const resumeCameraHandle = async () => {
     if (html5QrCode) {
         html5QrCode.resume()
-        setBtnPosition()
+        setTimeout(() => {
+            setBtnPosition()
+        }, 50)
     }
 }
 
