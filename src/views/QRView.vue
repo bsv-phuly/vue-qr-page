@@ -222,9 +222,6 @@ const cancelModal = async () => {
     // }
     showModal.value = false
     alertModal.value = true
-    if (html5QrCode) {
-        pauseCameraHandle()
-    }
 }
 
 const confirmSubmitQr = async () => {
@@ -383,13 +380,7 @@ const initCamera = () => {
 function getBorderBottomWidth(element) {
     const computedStyle = window.getComputedStyle(element);
     const borderWidth = computedStyle.borderBottomWidth;
-
-    // This will return the computed value in pixels
-    console.log(`Border bottom width: ${borderWidth}`);
-
-    // If you need the numeric value without 'px'
     const numericValue = parseFloat(borderWidth);
-    console.log(`Numeric value: ${numericValue}`);
 
     return {
         withUnit: borderWidth,
@@ -400,14 +391,7 @@ function getBorderBottomWidth(element) {
 function getBorderTopWidth(element) {
     const computedStyle = window.getComputedStyle(element);
     const borderWidth = computedStyle.borderTopWidth;
-
-    // This will return the computed value in pixels
-    console.log(`Border bottom width: ${borderWidth}`);
-
-    // If you need the numeric value without 'px'
     const numericValue = parseFloat(borderWidth);
-    console.log(`Numeric value: ${numericValue}`);
-
     return {
         withUnit: borderWidth,
         numericValue: numericValue
