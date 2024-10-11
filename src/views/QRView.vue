@@ -177,6 +177,7 @@ const errorModal = ref(false)
 const alertModal = ref(false)
 const qrTextEl = ref()
 const cameraBtnEl = ref()
+const borderBottomWidthQr = ref()
 let html5QrCode
 
 onMounted(() => {
@@ -301,7 +302,7 @@ const initCamera = () => {
                             // console.log('errorMessage', errorMessage)
                         }
                     )
-                    .then(() => {
+                    .then(async () => {
                         // Camera started successfully, add UI elements
                         const addQrOverlay = () => {
                             const readerElement = document.getElementById('qr-shaded-region');
@@ -352,21 +353,22 @@ const initCamera = () => {
                             console.log(borderInfo, 'borderInfo')
                             console.log(topBorderPixels, 'topBorderPixels')
                             console.log(bottomBorderPixels, 'bottomBorderPixels')
+                            borderBottomWidthQr.value = bottomBorderPixels
                             readerElement.style.borderTopWidth = `${topBorderPixels}px`;
                             readerElement.style.borderBottomWidth = `${bottomBorderPixels}px`;
                             isQrScan.value = true
-                            console.log(qrTextEl.value)
-                            console.log(qrTextEl.value.target)
-                            if (qrTextEl.value) {
-                                qrTextEl.value.style.bottom = `${bottomBorderPixels - 65}px`
-                            }
-                            if (cameraBtnEl.value) {
-                                cameraBtnEl.value.style.bottom = `${qrTextEl.value.style.bottom - 85}px`
-                            }
                         };
 
                         // Start trying to add overlay
                         addQrOverlay();
+                        console.log(qrTextEl.value)
+                        console.log(qrTextEl.value.target)
+                        if (qrTextEl.value) {
+                            qrTextEl.value.style.bottom = `${borderBottomWidthQr.value - 65}px`
+                        }
+                        if (cameraBtnEl.value) {
+                            cameraBtnEl.value.style.bottom = `${qrTextEl.value.style.bottom - 85}px`
+                        }
                     })
                     .catch((err) => {
                         // Start failed, handle it.
