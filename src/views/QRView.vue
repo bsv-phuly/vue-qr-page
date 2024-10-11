@@ -107,10 +107,10 @@
         <!-- <div class="qr-box"></div> -->
         <!-- </div> -->
         <div id="qr-code-full-region" style="width: 100%; height: 100vh;"></div>
-        <div class="qr-text-note" v-if="isQrScan">
+        <div ref="qrTextEl" class="qr-text-note" v-if="isQrScan">
             QRコードを読み取ってください
         </div>
-        <button class="camera-toggle" @click="toggleCamera" v-if="isQrScan">
+        <div ref="cameraBtnEl" class="camera-toggle" @click="toggleCamera" v-if="isQrScan">
             <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_844_6195)">
                     <path
@@ -130,7 +130,7 @@
                     </clipPath>
                 </defs>
             </svg>
-        </button>
+        </div>
     </div>
 </template>
 
@@ -172,6 +172,8 @@ const showModal = ref(false)
 const successModal = ref(false)
 const errorModal = ref(false)
 const alertModal = ref(false)
+const qrTextEl = ref()
+const cameraBtnEl = ref()
 let html5QrCode
 
 onMounted(() => {
@@ -350,6 +352,8 @@ const initCamera = () => {
                             readerElement.style.borderTopWidth = `${topBorderPixels}px`;
                             readerElement.style.borderBottomWidth = `${bottomBorderPixels}px`;
                             isQrScan.value = true
+                            qrTextEl.value.style.bottom = `${bottomBorderPixels - 65}px`
+                            cameraBtnEl.value.style.bottom = `${qrTextEl.value.style.bottom - 85}px`
                         };
 
                         // Start trying to add overlay
@@ -493,8 +497,8 @@ const onDecode = async (result) => {
     height: 100vh;
 
     .camera-toggle {
-        position: fixed;
-        top: calc(100vh - 122px);
+        position: absolute;
+        /* top: calc(100vh - 122px); */
         left: 50%;
         transform: translateX(-50%);
         z-index: 1000;
@@ -529,11 +533,11 @@ const onDecode = async (result) => {
         line-height: 21px;
         text-align: center;
         color: #FFFFFF;
-        position: fixed;
+        position: absolute;
         display: flex;
         align-items: center;
         justify-content: center;
-        top: calc(100vh - 207px);
+        /* top: calc(100vh - 207px); */
         left: 50%;
         transform: translateX(-50%);
         z-index: 1000;
