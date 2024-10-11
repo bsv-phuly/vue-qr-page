@@ -192,6 +192,13 @@ watch(
     }
 );
 
+const resumeCameraHandle = async () => {
+    if (html5QrCode) {
+        html5QrCode.resume()
+        setBtnPosition()
+    }
+}
+
 const pauseCameraHandle = async () => {
     if (html5QrCode) {
         html5QrCode.pause(true)
@@ -232,9 +239,7 @@ const confirmSubmitQr = async () => {
             successModal.value = false
         }, 2500)
     }
-    if (html5QrCode) {
-        html5QrCode.resume()
-    }
+    resumeCameraHandle()
 }
 
 const tryAgain = async () => {
@@ -244,15 +249,24 @@ const tryAgain = async () => {
 
 const closeError = async () => {
     errorModal.value = false
-    if (html5QrCode) {
-        html5QrCode.resume()
-    }
+    resumeCameraHandle()
 }
 
 const toggleQrScanner = (isOn) => {
     const readerElement = document.getElementById('qr-shaded-region');
     readerElement.style.display = isOn ? 'block' : 'none'
     isQrScan.value = isOn
+}
+
+const setBtnPosition = () => {
+    console.log(qrTextEl.value)
+    console.log(cameraBtnEl.value)
+    if (qrTextEl.value) {
+        qrTextEl.value.style.bottom = `${borderBottomWidthQr.value - 65}px`
+    }
+    if (cameraBtnEl.value) {
+        cameraBtnEl.value.style.bottom = `${(borderBottomWidthQr.value - 65) - 85}px`
+    }
 }
 
 const initCamera = () => {
@@ -352,15 +366,8 @@ const initCamera = () => {
                             readerElement.style.borderBottomWidth = `${bottomBorderPixels}px`;
                             isQrScan.value = true
                             setTimeout(() => {
-                                console.log(qrTextEl.value)
-                                console.log(cameraBtnEl.value)
-                                if (qrTextEl.value) {
-                                    qrTextEl.value.style.bottom = `${borderBottomWidthQr.value - 65}px`
-                                }
-                                if (cameraBtnEl.value) {
-                                    cameraBtnEl.value.style.bottom = `${(borderBottomWidthQr.value - 65) - 85}px`
-                                }
-                            }, 100)
+                                resumeCameraHandle()
+                            }, 50)
                         };
 
                         // Start trying to add overlay
