@@ -131,9 +131,6 @@
                 </defs>
             </svg>
         </div>
-        <div ref="qrTextEl" class="qr-text-note">
-            QRコードを読み取ってください
-        </div>
     </div>
 </template>
 
@@ -357,18 +354,20 @@ const initCamera = () => {
                             readerElement.style.borderTopWidth = `${topBorderPixels}px`;
                             readerElement.style.borderBottomWidth = `${bottomBorderPixels}px`;
                             isQrScan.value = true
+                            setTimeout(() => {
+                                console.log(qrTextEl.value)
+                                console.log(cameraBtnEl.value)
+                                if (qrTextEl.value) {
+                                    qrTextEl.value.style.bottom = `${borderBottomWidthQr.value - 65}px`
+                                }
+                                if (cameraBtnEl.value) {
+                                    cameraBtnEl.value.style.bottom = `${(borderBottomWidthQr.value - 65) - 85}px`
+                                }
+                            }, 100)
                         };
 
                         // Start trying to add overlay
                         addQrOverlay();
-                        console.log(qrTextEl.value)
-                        console.log(cameraBtnEl.value)
-                        if (qrTextEl.value) {
-                            qrTextEl.value.style.bottom = `${borderBottomWidthQr.value - 65}px`
-                        }
-                        if (cameraBtnEl.value) {
-                            cameraBtnEl.value.style.bottom = `${(borderBottomWidthQr.value - 65) - 85}px`
-                        }
                     })
                     .catch((err) => {
                         // Start failed, handle it.
